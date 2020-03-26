@@ -1,0 +1,52 @@
+version: '3.7'
+
+services:
+    db:
+        image: mysql:5.7
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_ROOT_PASSWORD: ${DB_PASS}
+            MYSQL_USER: ${DB_USER}
+            MYSQL_PASSWORD: ${DB_PASS}
+        volumes:
+            - ${APP_PATH}/var/lib/mysql:/var/lib/mysql:rw
+            - ${APP_PATH}/var/lib/mysqld:/var/run/mysqld:rw
+        ports:
+            - "33306:3306"
+
+    api:
+        build:
+            context: api
+        environment:
+            DATABASE_URL: mysql://${DB_USER}:${DB_PASS}@localhost/${DB_NAME}?serverVersion=5.7&unix_socket=/var/run/mysqld/mysqld.sock
+            MESSENGER_TRANSPORT_DSN: doctrine://default
+        depends_on:
+            - db
+        volumes:
+            - ${APP_PATH}/api:/app:cached
+            - ${APP_PATH}/var/lib/mysqld:/var/run/mysqld:rw
+        ports:
+            - "8080:8080"
+
+    front:
+        build:
+            context: front
+        environment:
+            REACT_APP_API_HOST: ${API_HOST}
+        volumes:
+            - ${APP_PATH}/front:/app:cached
+        ports:
+            - "3000:3000"
+
+    admin:
+        build:
+            context: admin
+        environment:
+            REACT_APP_API_HOST: ${API_HOST}
+        volumes:
+            - ${APP_PATH}/admin:/app:cached
+        ports:
+            - "5000:3000"
+

@@ -1,0 +1,5 @@
+var/lib/mysql/*
+var/lib/mysqld/*
+admin/
+api/
+front/
