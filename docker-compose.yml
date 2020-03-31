@@ -19,6 +19,7 @@ services:
     api:
         build:
             context: api
+            dockerfile: Dockerfile-local
         environment:
             DATABASE_URL: mysql://${DB_USER}:${DB_PASS}@localhost/${DB_NAME}?serverVersion=5.7&unix_socket=/var/run/mysqld/mysqld.sock
             MESSENGER_TRANSPORT_DSN: doctrine://default
@@ -33,20 +34,24 @@ services:
     front:
         build:
             context: front
+            dockerfile: Dockerfile-local
         environment:
             REACT_APP_API_HOST: ${API_HOST}
         volumes:
-            - ${APP_PATH}/front:/app:cached
+            - ${APP_PATH}/front/public:/app/public:cached
+            - ${APP_PATH}/front/src:/app/src:cached
         ports:
             - "3000:3000"
 
     admin:
         build:
             context: admin
+            dockerfile: Dockerfile-local
         environment:
             REACT_APP_API_HOST: ${API_HOST}
         volumes:
-            - ${APP_PATH}/admin:/app:cached
+            - ${APP_PATH}/admin/public:/app/public:cached
+            - ${APP_PATH}/admin/src:/app/src:cached
         ports:
             - "5000:3000"
 
