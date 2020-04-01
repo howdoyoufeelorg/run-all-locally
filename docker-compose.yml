@@ -23,6 +23,7 @@ services:
         environment:
             DATABASE_URL: mysql://${DB_USER}:${DB_PASS}@localhost/${DB_NAME}?serverVersion=5.7&unix_socket=/var/run/mysqld/mysqld.sock
             MESSENGER_TRANSPORT_DSN: doctrine://default
+            JWT_PASSPHRASE: 3c0e7eb52b29e1645bd95f8762508522
         depends_on:
             - db
         volumes:
