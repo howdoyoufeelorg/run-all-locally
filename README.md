@@ -34,12 +34,17 @@ Then you need to create the tables in the database. You do this via api containe
 $ docker-compose exec api bin/console doctrine:schema:create 
 ```
 
-Finally, you should activate fixtures to create a test user and an initial set of questions:
+Finally, you can activate fixtures to create a test user and an initial set of questions:
  
 ```bash
-$ docker-compose exec api bin/console doctrine:fixtures:load
+$ docker-compose exec api bin/console doctrine:fixtures:load -q
 ```
 
+Test user credentials are:
+```
+email: test@howdoyoufeel.org
+password: TestHowDoYouFeel
+```
 Front should be accessible at http://localhost:3000
 
 Admin should be accessible at http://localhost:5000
