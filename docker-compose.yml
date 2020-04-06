@@ -38,6 +38,7 @@ services:
             dockerfile: Dockerfile-local
         environment:
             REACT_APP_API_HOST: ${API_HOST}
+            REACT_APP_INITIAL_STAGE: ${FRONT_INITIAL_STAGE}
         volumes:
             - ${APP_PATH}/front/public:/app/public:cached
             - ${APP_PATH}/front/src:/app/src:cached
