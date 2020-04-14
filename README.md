@@ -40,11 +40,18 @@ Finally, you can activate fixtures to create a test user and an initial set of q
 $ docker-compose exec api bin/console doctrine:fixtures:load -q
 ```
 
-Test user credentials are:
+Test Admin credentials are:
 ```
-email: test@howdoyoufeel.org
+email: admin@howdoyoufeel.org
 password: TestHowDoYouFeel
 ```
+
+Test Editor credentials are:
+```
+email: editor@howdoyoufeel.org
+password: TestHowDoYouFeel
+```
+
 Front should be accessible at http://localhost:3000
 
 Admin should be accessible at http://localhost:5000
