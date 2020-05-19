@@ -24,6 +24,8 @@ services:
             DATABASE_URL: mysql://${DB_USER}:${DB_PASS}@localhost/${DB_NAME}?serverVersion=5.7&unix_socket=/var/run/mysqld/mysqld.sock
             MESSENGER_TRANSPORT_DSN: doctrine://default
             JWT_PASSPHRASE: ${JWT_PASSPHRASE}
+            GOOGLE_APPLICATION_CREDENTIALS: ${GOOGLE_APPLICATION_CREDENTIALS}
+            GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT}
         depends_on:
             - db
         volumes:
