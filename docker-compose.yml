@@ -50,12 +50,13 @@ services:
     admin:
         build:
             context: admin
-            dockerfile: Dockerfile-local
+            dockerfile: Dockerfile-local-dev
         environment:
             REACT_APP_API_HOST: ${API_HOST}
+            PORT: 8080
         volumes:
             - ${APP_PATH}/admin/public:/app/public:cached
             - ${APP_PATH}/admin/src:/app/src:cached
         ports:
-            - "5000:3000"
+            - "5000:8080"
 
