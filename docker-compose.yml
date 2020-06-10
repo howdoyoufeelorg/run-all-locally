@@ -26,6 +26,8 @@ services:
             JWT_PASSPHRASE: ${JWT_PASSPHRASE}
             GOOGLE_APPLICATION_CREDENTIALS: ${GOOGLE_APPLICATION_CREDENTIALS}
             GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT}
+            REDISHOST: ${REDISHOST}
+            REDISPORT: ${REDISPORT}
         depends_on:
             - db
         volumes:
